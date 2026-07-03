@@ -8,5 +8,14 @@
       "type": "image/png",
       "sizes": "384x384"
     }
+  ],
+  "theme_color": "#1b0433",
+  "background_color": "#1b0433",
+  "short_name": "Radio Fantasma",
+  "description": "Ouça a radio Fantasma on-line",
+  "lang": "pt",
+  "orientation": "any",
+  "categories": [
+    "music"
   ]
 }
