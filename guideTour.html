@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem Vindo a Radio Fantasma!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div id="page-one-guide" class="big-information-card">
+        <h2>Bem vindo a Radio Fantasma!</h2><br><hr><br>
+        <h3>Agradecemos muito por querer ouvir nossa radio. Iremos te mostrar umas coisas legais desta radio.</h3>
+        <div class="arrow-keys">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF" onclick="changeNextPage();"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+        </div>
+    </div>
+
+    <div id="page-two-guide" class="big-information-card" style="display: none;">
+        <h2>Visualizadores: </h2><br><hr><br>
+        <h3>Enquanto estiver ouvindo a radio, gire a tela do seu celular, você vera efeitos que acompanham a batida da musica, para mudar de efeito, deslize para o lado.</h3>
+        <div class="arrow-keys">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF" onclick="changeNextPage();"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+        </div>
+    </div>
+
+    <div id="page-tree-guide" class="big-information-card" style="display: none;">
+        <h2>Gravar: </h2><br><hr><br>
+        <h3>No lançamento oficial, você podera gravar trexos de ate 1 hora da programação da radio e salvar para ouvir offline.</h3>
+        <div class="arrow-keys">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF" onclick="changeNextPage();"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+        </div>
+    </div>
+
+    <div id="page-four-guide" class="big-information-card" style="display: none;">
+        <h2>Fim: </h2><br><hr><br>
+        <h3>Esse é o fim do guia, ao clicar em proximo você finalmente ira para a radio, muito obrigado por ler:D</h3>
+        <div class="arrow-keys">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF" onclick="changeNextPage();"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+        </div>
+    </div>
+
+    <script>
+        let page = 1;
+
+        function changeNextPage(){
+            switch(page){
+                case 1:
+                    document.getElementById("page-one-guide").style.display = 'none';
+                    document.getElementById("page-two-guide").style.display = 'block';
+                    break;
+
+                case 2:
+                    document.getElementById("page-two-guide").style.display = 'none';
+                    document.getElementById("page-tree-guide").style.display = 'block';
+                    break;
+
+                case 3:
+                    document.getElementById("page-tree-guide").style.display = 'none';
+                    document.getElementById("page-four-guide").style.display = 'block';
+                    break;
+
+                case 4:
+                    window.localStorage.setItem("jaLeuIntroducao", 1);
+                    window.location.href = "index.html";
+                    break;
+            }
+            page += 1;
+        }
+    </script>
+</body>
+</html>
