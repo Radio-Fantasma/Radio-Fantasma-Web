@@ -6,13 +6,13 @@
     {
       "src": "Logo-fantasma.png",
       "type": "image/png",
-      "sizes": "1080x1099
+      "sizes": "384x384"
     }
   ],
   "theme_color": "#1b0433",
   "background_color": "#1b0433",
   "short_name": "Radio Fantasma",
-  "description": "Ouça a radio Fantasma on-line",
+  "description": "Ouca a radio Fantasma on-line",
   "lang": "pt",
   "orientation": "any",
   "categories": [

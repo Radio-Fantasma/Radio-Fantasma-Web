@@ -65,6 +65,10 @@ nav{
     font-size: 24px;
 }
 
+#song-artist-horizontal{
+    font-size: 24px;
+}
+
 .nav-horizontal span{
     display: flex;
     align-items: center;

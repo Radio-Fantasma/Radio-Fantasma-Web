@@ -56,6 +56,8 @@ async function getSongPlaying(){
             document.getElementById("music-cover-horizontal").src = song.art;
             document.getElementById("song-name-horizontal").innerHTML = song.title;
             document.getElementById("song-artist-horizontal").innerHTML = song.artist; 
+
+            lastMusicPlayed = song.title;
         }
     } catch (error) {
         try {
@@ -90,6 +92,10 @@ function changeDisplay() {
 }
 
 async function startPlayer(){
+    document.getElementById("button-play-live").style.display = "none";
+    document.getElementById("button-play-live-side").style.display = "none";
+    document.getElementById("loading-live").style.display = "block";
+    document.getElementById("loading-live-side").style.display = "block";
     await initVisualizer();
 
     audio.removeAttribute("src");
@@ -103,8 +109,8 @@ async function startPlayer(){
     
     playing = true;
 
-    document.getElementById("button-play-live").style.display = "none";
-    document.getElementById("button-play-live-side").style.display = "none";
+    document.getElementById("loading-live").style.display = "none";
+    document.getElementById("loading-live-side").style.display = "none";
 }
 
 changeDisplay();
