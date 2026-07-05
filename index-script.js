@@ -20,6 +20,10 @@ if ("serviceWorker" in navigator) {
 
 async function getSongPlaying(){
     const url = "https://antom.tailf176e0.ts.net/api/nowplaying";
+<<<<<<< HEAD
+=======
+    lastMusicPlayed = "";
+>>>>>>> d56ddac7e90f5523f2a91972448f357980b1a959
     
     try {
         const response = await fetch(url);
@@ -32,12 +36,16 @@ async function getSongPlaying(){
         const song = result[0].now_playing.song;
 
         if(song.title != lastMusicPlayed) {
+<<<<<<< HEAD
             lastMusicPlayed = song.title;
             try{
                 if(song.artist == "Cássia Eller" && song.album == "Cássia Eller"){
                     song.artist = "Cassia Eller";
                     song.album = "Cassia Eller";
                 }
+=======
+            try{
+>>>>>>> d56ddac7e90f5523f2a91972448f357980b1a959
                 const response = await fetch(`https://www.theaudiodb.com/api/v1/json/123/searchalbum.php?s=${song.artist}&a=${song.album}`);
 
                 if(!response.ok){
@@ -60,6 +68,11 @@ async function getSongPlaying(){
             document.getElementById("music-cover-horizontal").src = song.art;
             document.getElementById("song-name-horizontal").innerHTML = song.title;
             document.getElementById("song-artist-horizontal").innerHTML = song.artist; 
+<<<<<<< HEAD
+=======
+
+            lastMusicPlayed = song.title;
+>>>>>>> d56ddac7e90f5523f2a91972448f357980b1a959
         }
     } catch (error) {
         try {
@@ -150,6 +163,7 @@ function errorForTemplate(){
     document.getElementById("pop-up-content").innerHTML = "<center><p>Poise, o programador é um preguiçoso e ainda não fez isso...</p><br><img src='https://images.steamusercontent.com/ugc/2480995803949848059/D50BF0F0ECAFDC4E113781EEB008F374C67BAA0F/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true' style='height: 150px;'><br><p>aborgue</p></center>";
 }
 
+<<<<<<< HEAD
 function showSchedule(){
     document.getElementById("pop-up").style.display = "block";
     document.getElementById("pop-up-title").innerHTML = "Programação";
@@ -196,6 +210,8 @@ async function callInstallPrompt(){
     document.getElementById("installButton").style.display = "none";
 };
 
+=======
+>>>>>>> d56ddac7e90f5523f2a91972448f357980b1a959
 getSongPlaying();
 
 setInterval(getSongPlaying, 6000);

@@ -113,20 +113,33 @@ nav{
 }
 
 .icon-right-top{
+<<<<<<< HEAD
     position: absolute;
     top: 24px;
     right: 24px;
     z-index: -9999;
     padding: 12px;
+=======
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: -9999;
+>>>>>>> d56ddac7e90f5523f2a91972448f357980b1a959
 }
 
 .icon-left-top{
     position: fixed;
+<<<<<<< HEAD
     pointer-events: all;
     top: 24px;
     left: 24px;
     z-index: -9999;
     padding: 12px;
+=======
+    top: 24px;
+    left: 24px;
+    z-index: -9999;
+>>>>>>> d56ddac7e90f5523f2a91972448f357980b1a959
 }
 
 .btn{
@@ -160,7 +173,11 @@ nav{
     border-top-right-radius: 32px;
     animation-name: pop-up-start;
     animation-duration: 0.3s;
+<<<<<<< HEAD
     height: 60%;
+=======
+    height: 40%;
+>>>>>>> d56ddac7e90f5523f2a91972448f357980b1a959
 }
 
 @keyframes pop-up-start {
@@ -169,7 +186,11 @@ nav{
     }
 
     100%{
+<<<<<<< HEAD
         height: 60%;
+=======
+        height: 40%;
+>>>>>>> d56ddac7e90f5523f2a91972448f357980b1a959
     }
 }
 
@@ -186,6 +207,7 @@ nav{
 
 #horizontal-mode{
     background-color: #000;
+<<<<<<< HEAD
 }
 
 tr{
@@ -199,4 +221,6 @@ th{
 .btn-secondary{
     background-color: #9b60d9;
     color: #1b0433;
+=======
+>>>>>>> d56ddac7e90f5523f2a91972448f357980b1a959
 }
