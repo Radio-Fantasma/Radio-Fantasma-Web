@@ -1,0 +1,21 @@
+{
+  "name": "Radio Fantasma",
+  "start_url": "index.html",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "ic_launcher.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "theme_color": "#1b0433",
+  "background_color": "#1b0433",
+  "short_name": "Radio Fantasma",
+  "description": "Ouca a radio Fantasma on-line",
+  "lang": "pt",
+  "orientation": "any",
+  "categories": [
+    "music"
+  ]
+}
