@@ -1,11 +1,15 @@
-function createMrfFile(audioBlob, deviceName, recordName, audioFormat) {
+function createMrfFile(audioBlob, deviceName, recordName, recordDescription, audioFormat) {
+    if (!audioBlob) {
+        return Promise.reject(new Error('audioBlob is undefined'));
+    }
     // Create metadata object
     const metadata = {
         deviceName: deviceName || 'Unknown Device',
         recordName: recordName || "Programa inominado",
+        recordDescription: recordDescription || "",
         audioFormat: audioFormat || 'mp3',
         createdAt: new Date().toISOString(),
-        audioSize: audioArrayBuffer.byteLength
+        audioSize: audioBlob.size
     };
     
     // Convert metadata to JSON string
@@ -48,14 +52,16 @@ function createMrfFile(audioBlob, deviceName, recordName, audioFormat) {
  * Synchronous version for use with already converted array buffers
  * @param {ArrayBuffer} audioArrayBuffer - The audio data as ArrayBuffer
  * @param {string} deviceName - Name of the device
- * @param {string} deviceLocation - Location of the device
+ * @param {string} recordName - Name of the recording
+ * @param {string} recordDescription - Description of the recording
  * @param {string} audioFormat - Audio format
  * @returns {Blob} - MRF format blob
  */
-function createMrfFileFromArrayBuffer(audioArrayBuffer, deviceName, recordName, audioFormat) {
+function createMrfFileFromArrayBuffer(audioArrayBuffer, deviceName, recordName, recordDescription, audioFormat) {
     const metadata = {
         deviceName: deviceName || 'Unknown Device',
         recordName: recordName || "Programa inominado",
+        recordDescription: recordDescription || "",
         audioFormat: audioFormat || 'mp3',
         createdAt: new Date().toISOString(),
         audioSize: audioArrayBuffer.byteLength

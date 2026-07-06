@@ -4,15 +4,9 @@
   "display": "standalone",
   "icons": [
     {
-<<<<<<< HEAD
       "src": "ic_launcher.png",
       "type": "image/png",
       "sizes": "192x192"
-=======
-      "src": "Logo-fantasma.png",
-      "type": "image/png",
-      "sizes": "384x384"
->>>>>>> d56ddac7e90f5523f2a91972448f357980b1a959
     }
   ],
   "theme_color": "#1b0433",
@@ -24,8 +18,4 @@
   "categories": [
     "music"
   ]
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> d56ddac7e90f5523f2a91972448f357980b1a959

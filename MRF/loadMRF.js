@@ -95,7 +95,8 @@ function isValidMrfFile(file) {
                 // Check required fields
                 const hasRequiredFields = 
                     metadata.deviceName !== undefined &&
-                    metadata.deviceLocation !== undefined &&
+                    metadata.recordName !== undefined &&
+                    metadata.recordDescription !== undefined &&
                     metadata.audioFormat !== undefined;
                 
                 resolve(hasRequiredFields);
