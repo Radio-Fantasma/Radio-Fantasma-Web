@@ -15,6 +15,7 @@ const albumArtCache = new Map();
 const POLL_INTERVAL = 15000;
 let activeRequest = false;
 const FETCH_TIMEOUT = 10000;
+var playingRadio = true;
 
 async function fetchWithTimeout(url, options = {}, timeout = FETCH_TIMEOUT) {
     const controller = new AbortController();
@@ -40,7 +41,7 @@ async function getSongPlaying() {
         const result = await response.json();
         const song = result[0].now_playing.song;
 
-        if (song.title != lastMusicPlayed) {
+        if (song.title != lastMusicPlayed && playingRadio) {
             lastMusicPlayed = song.title;
             
             const displayArtist = song.artist === "Cássia Eller" ? "Cassia Eller" : song.artist;
@@ -85,7 +86,7 @@ async function getSongPlaying() {
         try {
             await fetchWithTimeout("https://example.com");
             msg1 = "Erro de conexão";
-            msg2 = "Infelizmente nosso transmissor web foi danificado <i>#RF_NET_02</i>";
+            msg2 = "Infelizmente nosso transmissor web foi danificado ou desligado.<i>#RF_NET_02</i>";
         } catch {
             msg1 = "Erro de conexão";
             msg2 = "Verifique sua internet ou contate o suporte. Pode ser nossa culpa isso tambem... <i>#RF_NET_01</i>";
@@ -113,6 +114,7 @@ function changeDisplay() {
 }
 
 async function startPlayer() {
+    hidePopUp();
     document.getElementById("button-play-live").style.display = "none";
     document.getElementById("button-play-live-side").style.display = "none";
     document.getElementById("loading-live").style.display = "block";
@@ -127,9 +129,11 @@ async function startPlayer() {
     await audio.play();
     
     playing = true;
+    playingRadio = true;
 
     document.getElementById("loading-live").style.display = "none";
     document.getElementById("loading-live-side").style.display = "none";
+    getSongPlaying();
 }
 
 changeDisplay();
@@ -159,6 +163,12 @@ function errorForTemplate() {
     document.getElementById("pop-up").style.display = "block";
     document.getElementById("pop-up-title").innerHTML = "Ei! Parece que isso ainda não ta pronto...";
     document.getElementById("pop-up-content").innerHTML = "<center><p>Poise, o programador é um preguiçoso e ainda não fez isso...</p><br><img src='https://images.steamusercontent.com/ugc/2480995803949848059/D50BF0F0ECAFDC4E113781EEB008F374C67BAA0F/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true' style='height: 150px;'><br><p>aborgue</p></center>";
+}
+
+function popUpOpen(title, content) {
+    document.getElementById("pop-up").style.display = "block";
+    document.getElementById("pop-up-title").innerHTML = title;
+    document.getElementById("pop-up-content").innerHTML = content;
 }
 
 function showSchedule() {

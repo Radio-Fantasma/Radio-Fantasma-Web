@@ -199,6 +199,7 @@ th{
 .btn-secondary{
     background-color: #9b60d9;
     color: #1b0433;
+    border: none;
 }
 
 .top-buttons{

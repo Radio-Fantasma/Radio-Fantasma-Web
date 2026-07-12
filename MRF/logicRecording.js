@@ -35,6 +35,8 @@ async function saveMrfToIndexedDB(mrfBlob, metadata) {
 }
 
 async function startRecording() {
+    document.getElementById('pop-up-recorder').style.display = 'none';
+    document.getElementById('recordWarning').style.display = 'block';
     if (mediaRecorder && mediaRecorder.state === 'recording') return;
 
     const stream = audio.captureStream();
@@ -69,6 +71,7 @@ async function startRecording() {
 }
 
 function stopRecording() {
+    document.getElementById('recordWarning').style.display = 'none';
     if (mediaRecorder && mediaRecorder.state === 'recording') {
         mediaRecorder.stop();
     }
@@ -138,7 +141,7 @@ async function getAllRecordings() {
     });
 }
 
-async function loadRecordingToAudio(recordingId) {
+async function loadRecordingToAudio(recordingId, recordingName, recordingDesc) {
     if (!mrfDB) mrfDB = await openDB();
     return new Promise((resolve, reject) => {
         const transaction = mrfDB.transaction(['recordings'], 'readonly');
@@ -159,6 +162,13 @@ async function loadRecordingToAudio(recordingId) {
             } catch (err) {
                 reject(err);
             }
+            document.getElementById("song-name").innerText = recordingName;
+            document.getElementById("song-artist").innerText = recordingDesc;
+            document.getElementById("song-name-horizontal").innerText = recordingName;
+            document.getElementById("song-artist-horizontal").innerText = recordingDesc;
+            playingRadio = false;
+            document.getElementById("button-play-live").style.display = "none";
+            document.getElementById("button-play-live-side").style.display = "none";
         };
         request.onerror = () => reject(request.error);
     });
@@ -199,7 +209,7 @@ async function renderRecordingsList() {
         listContainer.innerHTML = '';
         recordings.forEach(rec => {
             const item = document.createElement('div');
-            item.style.cssText = 'padding:10px; margin:5px 0; background:#333; border-radius:8px; cursor:pointer;';
+            item.style.cssText = 'padding:10px; margin:5px 0; background: #1b0433; border: 2px #9b60d9 solid; border-radius:8px; cursor:pointer;';
             item.innerHTML = `
                 <strong>${rec.metadata.recordName}</strong>
                 <br><small>${new Date(rec.metadata.createdAt).toLocaleString()}</small>
@@ -207,16 +217,35 @@ async function renderRecordingsList() {
             `;
             item.onclick = async () => {
                 try {
-                    const result = await loadRecordingToAudio(rec.id);
+                    const result = await loadRecordingToAudio(
+                        rec.id,
+                        rec.metadata.recordName,
+                        rec.metadata.recordDescription
+                    );
                     document.getElementById('pop-up-recorder').style.display = 'none';
-                    showStatus(`Reproduzindo: ${result.metadata.recordName}`, 'success');
                 } catch (err) {
                     showStatus('Erro ao carregar gravação: ' + err.message, 'error');
                 }
             };
             listContainer.appendChild(item);
         });
+        
     } catch (err) {
         listContainer.innerHTML = '<p style="color:red;">Erro ao carregar gravações</p>';
     }
 }
+
+function replayRecord(){
+    hidePopUp();
+    audio.play();
+}
+
+audio.addEventListener('ended', (event) => {
+    if(audio.src == "audio.mp3"){
+        document.getElementById("song-name").textContent = "Transmissor quebrado ou desligado T-T";
+        document.getElementById("song-artist").innerHTML = "";
+    }
+    else{
+        popUpOpen("Fim da Gravação", "A gravação acabou, deseja ouvir novamente ou voltar para a radio?<br><br><button class='btn btn-primary' style='width: 100%;' onclick='startPlayer()'>Voltar para a Radio</button><br><br><button class='btn btn-secondary' onclick='replayRecord()' style='width: 100%;'>Ouvir Novamente</button>");
+    }
+});
