@@ -1,3 +1,8 @@
+:root{
+    --primary-color: #9b60d9;
+    --width-for-inputs: 92%;
+}
+
 *{
     padding: 0;
     margin: 0;
@@ -16,7 +21,7 @@ nav{
     background-color: #1b0433;
     display: grid;
     text-align: center;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     padding-bottom: 18px;
     z-index: -9999;
 }
@@ -210,4 +215,31 @@ th{
     left: 24px;
     grid-template-columns: 1fr 1fr;
     text-align: center;
+}
+
+.music-cover{
+    width: 250px;
+    height: 250px;
+    border-radius: 25px;
+}
+
+#recordings-list{
+    margin-top: 15px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.record-option{
+    padding:10px;
+    margin:5px 0;
+    background: #1b0433;
+    border: 2px #9b60d9 solid;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.dots{
+    position: absolute;
+    right: 6px;
+    top: 6px;
 }

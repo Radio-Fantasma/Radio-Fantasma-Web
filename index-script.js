@@ -84,9 +84,10 @@ async function getSongPlaying() {
     } catch (error) {
         let msg1, msg2;
         try {
-            await fetchWithTimeout("https://example.com");
+            await fetchWithTimeout("https://jsonplaceholder.typicode.com/posts/1");
             msg1 = "Erro de conexão";
-            msg2 = "Infelizmente nosso transmissor web foi danificado ou desligado.<i>#RF_NET_02</i>";
+            msg2 = "Infelizmente nosso transmissor web foi<br> danificado ou desligado...<i>#RF_NET_02</i>";
+            document.getElementById("button-play-live").style.display = "none";
         } catch {
             msg1 = "Erro de conexão";
             msg2 = "Verifique sua internet ou contate o suporte. Pode ser nossa culpa isso tambem... <i>#RF_NET_01</i>";
@@ -228,3 +229,25 @@ if ("serviceWorker" in navigator) {
 
 getSongPlaying();
 setInterval(getSongPlaying, POLL_INTERVAL);
+
+function openSettingsMenu(){
+    popUpOpen("Opções", "<button onclick='openThemeMenu()' style='width: 100%;' class='btn btn-primary'>Temas</button>");
+}
+
+function openThemeMenu(){
+    hidePopUp();
+    popUpOpen("Temas", "<button onclick='changeTheme(1)' class='btn btn-primary' style='width: 100%;'>Classico</button><br><br><button class='btn btn-primary' style='width: 100%;' onclick='changeTheme(2)'>Iprone 2G</button>");
+}
+
+function changeTheme(numero){
+    window.localStorage.setItem("themeCode", numero);
+    switch(numero){
+        case 1:
+            document.getElementById("styleSheet").href = "Styles/style.css";
+            break;
+
+        case 2:
+            document.getElementById("styleSheet").href = "Styles/iphone-style.css";
+            break;
+    }
+}

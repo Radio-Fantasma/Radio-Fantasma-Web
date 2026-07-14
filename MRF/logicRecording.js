@@ -192,9 +192,6 @@ async function renderRecordingsList() {
     if (!listContainer) {
         const listDiv = document.createElement('div');
         listDiv.id = 'recordings-list';
-        listDiv.style.marginTop = '15px';
-        listDiv.style.maxHeight = '200px';
-        listDiv.style.overflowY = 'auto';
         popup.querySelector('.pop-up').appendChild(listDiv);
         listContainer = listDiv;
     }
@@ -209,7 +206,7 @@ async function renderRecordingsList() {
         listContainer.innerHTML = '';
         recordings.forEach(rec => {
             const item = document.createElement('div');
-            item.style.cssText = 'padding:10px; margin:5px 0; background: #1b0433; border: 2px #9b60d9 solid; border-radius:8px; cursor:pointer;';
+            item.classList.add("record-option");
             item.innerHTML = `
                 <strong>${rec.metadata.recordName}</strong>
                 <br><small>${new Date(rec.metadata.createdAt).toLocaleString()}</small>
