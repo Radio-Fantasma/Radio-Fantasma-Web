@@ -186,17 +186,23 @@ function showSchedule() {
 
 let deferredPrompt = null;
 
-function hidePopUp() {
+function hidePopUp(specialCase = 0) {
     document.getElementById('pop-up').style.display = 'none';
+    if(specialCase == 1){
+	window.localStorage.setItem("refuseInstall", "1");
+    }
 }
 
 window.addEventListener("beforeinstallprompt", e => {
+    if(window.localStorage.getItem("refuseInstall") == "1"){
+	return 0;
+    }
     e.preventDefault();
     deferredPrompt = e;
 
     document.getElementById("pop-up").style.display = "block";
     document.getElementById("pop-up-title").innerHTML = "Instalar o App";
-    document.getElementById("pop-up-content").innerHTML = "Você pode instalar o app da rádio em seu celular para aproveitar o máximo. <br><br><button class='btn btn-primary' style='width: 45%; margin-right: 30px;' onclick='callInstallPrompt()'>Instalar</button><button class='btn btn-secondary' style='width: 45%;' onclick='hidePopUp()'>Nem ferrando!!!</button>";
+    document.getElementById("pop-up-content").innerHTML = "Você pode instalar o app da rádio em seu celular para aproveitar o máximo. <br><br><button class='btn btn-primary' style='width: 45%; margin-right: 30px;' onclick='callInstallPrompt()'>Instalar</button><button class='btn btn-secondary' style='width: 45%;' onclick='hidePopUp(1);'>Nem ferrando!!!</button>";
 });
 
 function openRecordContainer() {
@@ -236,7 +242,7 @@ function openSettingsMenu(){
 
 function openThemeMenu(){
     hidePopUp();
-    popUpOpen("Temas", "<button onclick='changeTheme(1)' class='btn btn-primary' style='width: 100%;'>Classico</button><br><br><button class='btn btn-primary' style='width: 100%;' onclick='changeTheme(2)'>Iprone 2G</button>");
+    popUpOpen("Temas", "<button onclick='changeTheme(1)' class='btn btn-primary' style='width: 100%;'>Classico</button><br><br><!--<button class='btn btn-primary' style='width: 100%;' onclick='changeTheme(2)'>Iprone 2G</button>-->");
 }
 
 function changeTheme(numero){
